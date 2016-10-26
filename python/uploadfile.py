@@ -4,15 +4,20 @@ from swiftclient.service import SwiftError, SwiftService, SwiftUploadObject
 from sys import argv
 
 # first argument is the container to upload file to
-# second argument is a list of the files to upload
+# second argument is the number of segments to be used in
+# third (and on) argument(s) is a list of the files to be uploaded
 container = argv[1]
 objs = []
-for item in argv[2:]:
+for item in argv[3:]:
 	objs.append(item)
+if int(argv[2]) is 0:
+	options = {}
+else:
+	options = {'segment_size':int(argv[2])}
 with SwiftService() as swift, OutputManager() as out_manager:
     	try:
 		# create the SwiftUploadObject list of objects to upload
-		objs = [SwiftUploadObject(obj) for obj in objs]
+		objs = [SwiftUploadObject(obj, options=options) for obj in objs]
         	# Schedule uploads on the SwiftService thread pool and iterate over the results
         	for result in swift.upload(container, objs):
             		if result['success']:
