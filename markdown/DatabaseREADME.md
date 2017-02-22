@@ -20,3 +20,7 @@ Generic Database README file
 ## Chameleon Project ##
 
    Name of the project that this database is being used for.
+   
+## Swift Container Name ##
+
+   Name of the Container that holds this data. Could be the same name as the atabase, that is fine.
