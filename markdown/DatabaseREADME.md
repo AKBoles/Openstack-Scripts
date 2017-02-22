@@ -23,4 +23,4 @@ Generic Database README file
    
 ## Swift Container Name ##
 
-   Name of the Container that holds this data. Could be the same name as the atabase, that is fine.
+   Name of the Container that holds this data. Could be the same name as the database, that is fine.
